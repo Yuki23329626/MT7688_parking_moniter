@@ -27,55 +27,37 @@ wifi
 
 ## 二、擴充 7688 容量(將系統 Mount 在 SD card 上)
 
-一些好處，例如下載大容量的 library 不會炸裂  
+一些好處，例如下載大容量的 library 或套件不會炸裂  
 
 1. 登入 linkit smart 7688  
-2. 輸入下方指令  
+2. 記得插上 sd card，接下來會對 sd card 進行格式化為 ext4 檔案系統的動作  
 
 ```bash
 opkg update
 opkg install block-mount kmod-fs-ext4 kmod-usb-storage-extras e2fsprogs fdisk
-```
-
-3. 記得插上 sd card，接下來會對 sd card 進行格式化為 ext4 檔案系統的動作  
-
-可以把 /dev/mmcblk0p1 當成 7688 上 sd card 裝置的檔案代號  
-
-```bash
+# 可以把 /dev/mmcblk0p1 當成 7688 上 sd card 裝置的檔案代號  
 umount /dev/mmcblk0p1
 mkfs.ext4 /dev/mmcblk0p1
-```
-
-4. 將 root FS 移至 SD 中
-
-```bash
+# 將 root FS 移至 SD 中
 mount /dev/mmcblk0p1 /mnt
 tar -C /overlay -cvf - . | tar -C /mnt -xf -
 umount /mnt
-```
-
-5. 建立 fstab 樣板
-
-```bash
+# 建立 fstab 樣板
 block detect > /etc/config/fstab
-```
-
-6. 修改 fstab 設定檔
-
-```bash
+# 修改 fstab 設定檔
 vi /etc/config/fstab
 ```
 
-7. 修改相關設定
+3. 修改相關設定並重啟7688
 
 - 輸入【 i 】進入編輯模式
 - 修改相關設定
-- - 將 mount 區域中的 target 修改成【 /overlay 】
-- - 將 mount 區域中的 enabled 修改成【 1 】
+- - 將 mount mmcblk0p1 區域中的 target 修改成【 /overlay 】
+- - 將 mount mmcblk0p1 區域中的 enabled 修改成【 1 】
 - 按 【 ESC 】再輸入【 :wq! 】存檔離開
 - 重新啟動 LinkIt Smart 7688
 
-8. 察看結果
+4. 察看結果
 
 ```bash
 df -h
