@@ -41,7 +41,10 @@ opkg install block-mount kmod-fs-ext4 kmod-usb-storage-extras e2fsprogs fdisk
 
 3. 記得插上 sd card，接下來會對 sd card 進行格式化為 ext4 檔案系統的動作  
 
+可以把 /dev/mmcblk0p1 當成 7688 上 sd card 裝置的檔案代號  
+
 ```bash
+umount /dev/mmcblk0p1
 mkfs.ext4 /dev/mmcblk0p1
 
 ```
@@ -88,6 +91,7 @@ df -h
 ## 三、個人偏好的套件
 
 ```bash
+opkg update
 opkg install git
 opkg install vim
 
