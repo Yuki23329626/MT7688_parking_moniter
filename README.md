@@ -30,12 +30,13 @@ wifi
 一些好處，例如下載大容量的 library 或套件不會炸裂  
 
 1. 登入 linkit smart 7688  
-2. 記得插上 sd card，接下來會對 sd card 進行格式化為 ext4 檔案系統的動作  
+2. 接下來會對 sd card 進行格式化為 ext4 檔案系統的動作  
+記得將 SD card 中重要資料移出
 
 ```bash
 opkg update
 opkg install block-mount kmod-fs-ext4 kmod-usb-storage-extras e2fsprogs fdisk
-# 可以把 /dev/mmcblk0p1 當成 7688 上 sd card 裝置的檔案代號  
+# /dev/mmcblk0p1 為 7688 上 sd card 裝置的檔案代號  
 umount /dev/mmcblk0p1
 mkfs.ext4 /dev/mmcblk0p1
 # 將 root FS 移至 SD 中
