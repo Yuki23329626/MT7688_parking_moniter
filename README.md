@@ -23,7 +23,6 @@ uci set wireless.sta.encryption="psk"
 uci set wireless.sta.disabled="0"
 uci commit wireless
 wifi
-
 ```
 
 ## 二、擴充 7688 容量(將系統 Mount 在 SD card 上)
@@ -36,14 +35,12 @@ wifi
 ```bash
 opkg update
 opkg install block-mount kmod-fs-ext4 kmod-usb-storage-extras e2fsprogs fdisk
-
 ```
 
 3. 記得插上 sd card，接下來會對 sd card 進行格式化為 ext4 檔案系統的動作  
 
 ```bash
 mkfs.ext4 /dev/mmcblk0p1
-
 ```
 
 4. 將 root FS 移至 SD 中
@@ -52,21 +49,18 @@ mkfs.ext4 /dev/mmcblk0p1
 mount /dev/mmcblk0p1 /mnt
 tar -C /overlay -cvf - . | tar -C /mnt -xf -
 umount /mnt
-
 ```
 
 5. 建立 fstab 樣板
 
 ```bash
 block detect > /etc/config/fstab
-
 ```
 
 6. 修改 fstab 設定檔
 
 ```bash
 vi /etc/config/fstab
-
 ```
 
 7. 修改相關設定
@@ -82,7 +76,6 @@ vi /etc/config/fstab
 
 ```bash
 df -h
-
 ```
 
 ## 三、個人偏好的套件
@@ -90,5 +83,4 @@ df -h
 ```bash
 opkg install git
 opkg install vim
-
 ```
