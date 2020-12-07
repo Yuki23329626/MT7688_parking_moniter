@@ -1,4 +1,4 @@
-# MT7688 Duo parking moniter
+# MT7688 Duo parking monitor
 
 ## 一、讓 7688 同時開啟 wifi station mode 與 wifi ap mode
 
