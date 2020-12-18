@@ -1,7 +1,7 @@
 # pi parking monitor
 
 
-# 改用 pi 進行實作，所以以下不重要
+# 改用 pi 進行實作，以下是舊版本的資訊
 ## 一、讓 7688 同時開啟 wifi station mode 與 wifi ap mode
 
 1. 將 firmware 刷成 0.93 的版本  
