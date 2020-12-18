@@ -3,16 +3,12 @@ import boto3
 
 client = boto3.client('kinesis-video-media')
 
-response = client.create_signaling_channel(
-    ChannelName='string',
-    ChannelType='SINGLE_MASTER',
-    SingleMasterConfiguration={
-        'MessageTtlSeconds': 123
-    },
-    Tags=[
-        {
-            'Key': 'string',
-            'Value': 'string'
-        },
-    ]
+response = client.get_media(
+    StreamName='MyKinesisVideoStream',
+    StreamARN='arn:aws:kinesisvideo:ap-northeast-1:593275627923:stream/MyKinesisVideoStream/1608059745417',
+    StartSelector={
+        'StartSelectorType': 'NOW'
+    }
 )
+
+print("response: " + response)
