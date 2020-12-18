@@ -1,0 +1,6 @@
+# fucking aws cli commands
+
+## get_media() need to set get-data-endpoint with --endpoint-url
+```bash
+aws kinesisvideo get-data-endpoint --stream-name MyKinesisVideoStream --api-name GET_MEDIA --endpoint-url https://kinesisvideo.ap-northeast-1.amazonaws.com
+```
