@@ -20,5 +20,5 @@ while(True):
 
     print("\n===== response =====")
     print(json_formatted_response)
-    time.sleep(1)
+    time.sleep(100)
 

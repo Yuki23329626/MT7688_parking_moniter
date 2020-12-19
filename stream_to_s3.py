@@ -72,7 +72,7 @@ while(True):
     else:
         print("Frame is None")
         break
-    time.sleep(1)
+    time.sleep(10)
 
 
 # When everything done, release the capture
