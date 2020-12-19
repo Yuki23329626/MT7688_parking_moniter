@@ -20,7 +20,7 @@ python 版本使用 3 的最新版應該就好了
 記得設定 aws 相關的 configuration，同時 IAM 上的 user 要設定權限 "administratorAccess" 等等  
 aws educate 可能沒辦法完成一些需要權限的操作  
 
-### 一、抓取即時影像片段 & 進行文字偵測
+## 一、抓取即時影像片段 & 進行文字偵測
 目前只有抓單一 chunk 的實作，之後要考慮如何組合成影片後上傳到 s3  
 每秒最多 5 個 chunk 的樣子  
 如果以兩分鐘上傳一次的話，大概是收集 600 chunks 集合成影片  
