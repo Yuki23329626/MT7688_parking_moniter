@@ -8,7 +8,7 @@
 也許可以寫第二支程式負責上傳的部分，也許要考慮刪除的部分，s3 免費的容量上限好像是 5G  
 
 ```bash
-python test.py
+python stream_to_video.py
 ```
 
 ## 筆記
