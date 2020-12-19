@@ -7,7 +7,7 @@ pip install opencv-python 可能會遇到問題
 解決方法是直接去官網下載 source code 依照步驟進行編譯  
 [opencv編譯方式](https://docs.opencv.org/4.5.0/db/df5/tutorial_linux_gcc_cmake.html)  
 cmake 那邊可能有點難以理解  
-總之就是在跟目錄建一個資料夾 "build"，進入 "build" 資料夾後，執行  
+總之就是在根目錄建一個資料夾 "build"，進入 "build" 資料夾後，執行  
 ```bash
 cmake ../../opencv-master
 make
