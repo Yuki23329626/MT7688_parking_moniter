@@ -99,10 +99,10 @@ python library 有兩個 class 分別是 kinesisvideo 跟 kinesis-video-media
 ```bash
 cp wireless/ralink.sh /lib/netifd/wireless/
 chmod +x /lib/netifd/wireless/ralink.sh
-uci set wireless.sta.ssid="HSNG-A2.4"
-uci set wireless.sta.key="hsng@root"
-uci set wireless.ap.ssid="nxshen_7688"
-uci set wireless.ap.key="123123123"
+uci set wireless.sta.ssid="<SSID>"
+uci set wireless.sta.key="<KEY>"
+uci set wireless.ap.ssid="<SSID>"
+uci set wireless.ap.key="<KEY>"
 uci set wireless.sta.encryption="psk"
 uci set wireless.sta.disabled="0"
 uci commit wireless
