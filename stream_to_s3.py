@@ -64,6 +64,7 @@ while(True):
             s3.upload_fileobj(f, BUCKET_NAME, OBJECT_NAME)
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
+        print("\n=== success ===")
         print("Current Time =", current_time)
 
         # Press q to close the video windows before it ends if you want
@@ -78,4 +79,4 @@ while(True):
 # When everything done, release the capture
 vcap.release()
 cv2.destroyAllWindows()
-print("Video stop")
+print("Stream to s3 stop")
