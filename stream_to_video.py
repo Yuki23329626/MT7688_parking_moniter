@@ -15,6 +15,7 @@ print(dataEndpoint)
 
 # # Grab the HLS Stream URL from the endpoint
 kvam = boto3.client("kinesis-video-archived-media", endpoint_url=dataEndpoint)
+
 url = kvam.get_hls_streaming_session_url(
     StreamName=STREAM_NAME,
     PlaybackMode="LIVE"
@@ -29,7 +30,7 @@ while(True):
 
     if frame is not None:
         # Display the resulting frame
-        cv2.imshow('frame',frame)
+        cv2.imshow('frame', frame)
 
         # Press q to close the video windows before it ends if you want
         if cv2.waitKey(22) & 0xFF == ord('q'):
