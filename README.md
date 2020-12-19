@@ -53,7 +53,14 @@ python text_detect.py
 
 ## 二、在 pi 上進行影像串流到 kinesis video stream  
 ```bash
-gst-launch-1.0 v4l2src device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480 ! omxh264enc control-rate=2 target-bitrate=512000 periodicity-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink stream-name="MyKinesisVideoStream" access-key="AKIAYUIP3VGJ6HR5HSK4" secret-key="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" aws-region="ap-northeast-1"
+gst-launch-1.0 v4l2src device=/dev/video0 ! \
+videoconvert ! video/x-raw,format=I420,width=640,height=480 ! \
+omxh264enc control-rate=2 target-bitrate=512000 periodicity-idr=45 \
+inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink \
+stream-name="MyKinesisVideoStream" \
+access-key="AKIAYUIP3VGJ6HR5HSK4" \
+secret-key="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" \
+aws-region="ap-northeast-1"
 ```
 
 ## 筆記
