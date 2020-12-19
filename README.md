@@ -22,6 +22,9 @@ python 版本使用 3 的最新版應該就好了
 也許可以寫第二支程式負責上傳的部分，也許要考慮刪除的部分，s3 免費的容量上限好像是 5G  
 #### [update 2020/12/19 13:03]  
 改成使用 HLS 的方式讀取 stream，應該可以用 opencv 的方式讀取 frame 來存成影片
+#### [update 2020/12/19 15:44]  
+突然發現一件事，也許可以不用 s3，因為 opencv 可以直接從 HLS 中擷取 frame  
+直接用 frame 來做 text detection 就好了  
 
 ```bash
 python stream_to_video.py
