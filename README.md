@@ -42,7 +42,8 @@ python library 有兩個 class 分別是 kinesisvideo 跟 kinesis-video-media
 用 php 連後端抓資料，前端顯示結果  
 [有現成的環境可以用](https://github.com/Yuki23329626/apache-docker)  
 
-![](https://placehold.it/15/f03c15/000000?text=+) 改用 pi 進行實作，以下是舊版本的資訊
+
+# 改用 pi 進行實作，以下是舊版本的資訊
 
 ## 一、讓 7688 同時開啟 wifi station mode 與 wifi ap mode
 
