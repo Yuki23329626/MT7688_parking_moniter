@@ -1,5 +1,6 @@
 import boto3
 import cv2
+import time
 
 STREAM_NAME = "MyKinesisVideoStream"
 
@@ -38,6 +39,7 @@ while(True):
     else:
         print("Frame is None")
         break
+    time.sleep(1)
 
 # When everything done, release the capture
 vcap.release()
