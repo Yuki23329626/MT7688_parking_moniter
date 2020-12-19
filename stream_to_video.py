@@ -29,9 +29,10 @@ while(True):
     # Capture frame-by-frame
     ret, frame = vcap.read()
 
-    if frame is not None:
+    if ret:
         # Display the resulting frame
-        cv2.imshow('frame', frame)
+        # cv2.imshow('frame', frame)
+        cv2.imwrite("frame.jpg", frame)
 
         # Press q to close the video windows before it ends if you want
         if cv2.waitKey(22) & 0xFF == ord('q'):
@@ -40,6 +41,7 @@ while(True):
         print("Frame is None")
         break
     time.sleep(1)
+    break
 
 # When everything done, release the capture
 vcap.release()
