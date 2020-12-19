@@ -70,6 +70,9 @@ while(True):
         # Press q to close the video windows before it ends if you want
         if cv2.waitKey(22) & 0xFF == ord('q'):
             break
+    # else:
+    #     print("Frame is None")
+    #     break
     time.sleep(10)
 
 
