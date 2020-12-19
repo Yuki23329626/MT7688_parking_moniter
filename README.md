@@ -74,6 +74,8 @@ mysql 的資料庫
 也有免費額度，選這個只是因為我比較熟悉 mysql  
 4. kinesisvideo  
 大坑，api 跟相關文件寫得有夠稀爛  
+可以想像一下 aws console 上的說明，跟 github 上的 example code，跟實際的 library 完全不一致  
+是哪個精神分裂的人寫出來的 document??  
 使用 get_media() 要先設甚麼 get_data_endpoint 但是文件沒告訴你要怎麼用  
 python library 有兩個 class 分別是 kinesisvideo 跟 kinesis-video-media  
 結果網路上的做法是要先去 kinesisvideo 去抓 data_endpoint  
