@@ -28,9 +28,15 @@ python 版本使用 3 的最新版應該就好了
 直接用 frame 來做 text detection 就好了  
 不行，結果還是只能透過 s3 來做 text detection，因為 function 中必須要有 s3 object  
 而且文字辨識的部分只能辨識單一的相片而已  
+#### [update 2020/12/19 17:08]  
+目前的做法是每秒擷取一張照片上傳到 s3  
+然後一樣每秒使用 rekognition api 做文字偵測  
+可以正常的取得 response  
 
+下面兩個程式可以考慮背景執行  
 ```bash
 python stream_to_video.py
+python text_detect.py
 ```
 
 ## 筆記
