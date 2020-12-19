@@ -28,9 +28,20 @@ python 版本使用 3 的最新版應該就好了
 直接用 frame 來做 text detection 就好了  
 不行，結果還是只能透過 s3 來做 text detection，因為 function 中必須要有 s3 object  
 而且文字辨識的部分只能辨識單一的相片而已  
+#### [update 2020/12/19 17:08]  
+目前的做法是每秒擷取一張照片上傳到 s3  
+然後一樣每秒使用 rekognition api 做文字偵測  
+可以正常的取得 response  
 
+下面兩個程式可以考慮背景執行  
 ```bash
 python stream_to_video.py
+python text_detect.py
+```
+
+### 在 pi 上進行影像串流到 kinesis video stream  
+```bash
+gst-launch-1.0 v4l2src device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480 ! omxh264enc control-rate=2 target-bitrate=512000 periodicity-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink stream-name="MyKinesisVideoStream" access-key="AKIAYUIP3VGJ6HR5HSK4" secret-key="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" aws-region="ap-northeast-1"
 ```
 
 ## 筆記
