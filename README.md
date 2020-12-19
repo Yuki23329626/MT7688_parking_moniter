@@ -25,18 +25,18 @@ aws educate 可能沒辦法完成一些需要權限的操作
 每秒最多 5 個 chunk 的樣子  
 如果以兩分鐘上傳一次的話，大概是收集 600 chunks 集合成影片  
 也許可以寫第二支程式負責上傳的部分，也許要考慮刪除的部分，s3 免費的容量上限好像是 5G  
-> [update 2020/12/19 13:03]  
-改成使用 HLS 的方式讀取 stream，應該可以用 opencv 的方式讀取 frame 來存成影片
-> [update 2020/12/19 15:44]  
+- [update 2020/12/19 13:03]  
+改成使用 HLS 的方式讀取 stream，應該可以用 opencv 的方式讀取 frame 來存成影片  
+- [update 2020/12/19 15:44]  
 突然發現一件事，也許可以不用 s3，因為 opencv 可以直接從 HLS 中擷取 frame  
 直接用 frame 來做 text detection 就好了  
 不行，結果還是只能透過 s3 來做 text detection，因為 function 中必須要有 s3 object  
 而且文字辨識的部分只能辨識單一的相片而已  
-> [update 2020/12/19 17:08]  
+- [update 2020/12/19 17:08]  
 目前的做法是每秒擷取一張照片上傳到 s3  
 然後一樣每秒使用 rekognition api 做文字偵測  
 可以正常的取得 response  
-> [update 2020/12/19 18:18]  
+- [update 2020/12/19 18:18]  
 我發現 rekognition 的收費貴得誇張，1000 張就要 1.3 美元了  
 改成 100 秒呼叫一次好了  
 s3 的部分改成 10 秒傳一次  
