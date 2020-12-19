@@ -35,7 +35,7 @@ python 版本使用 3 的最新版應該就好了
 
 下面兩個程式可以考慮背景執行  
 ```bash
-python stream_to_s.py
+python stream_to_s3.py
 python text_detect.py
 ```
 
