@@ -49,7 +49,7 @@ url = kvam.get_hls_streaming_session_url(
 vcap = cv2.VideoCapture(url)
 s3 = boto3.client('s3')
 BUCKET_NAME = "pistreambucket"
-OBJECT_NAME = "currentFrame"
+OBJECT_NAME = "currentFrame.jpg"
 
 while(True):
     # Capture frame-by-frame
