@@ -20,7 +20,7 @@ python 版本使用 3 的最新版應該就好了
 記得設定 aws 相關的 configuration，同時 IAM 上的 user 要設定權限 "administratorAccess" 等等  
 aws educate 可能沒辦法完成一些需要權限的操作  
 
-### 抓取即時影像片段 & 進行文字偵測
+### 一、抓取即時影像片段 & 進行文字偵測
 目前只有抓單一 chunk 的實作，之後要考慮如何組合成影片後上傳到 s3  
 每秒最多 5 個 chunk 的樣子  
 如果以兩分鐘上傳一次的話，大概是收集 600 chunks 集合成影片  
@@ -46,7 +46,7 @@ python stream_to_s3.py
 python text_detect.py
 ```
 
-### 在 pi 上進行影像串流到 kinesis video stream  
+### 二、在 pi 上進行影像串流到 kinesis video stream  
 ```bash
 gst-launch-1.0 v4l2src device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480 ! omxh264enc control-rate=2 target-bitrate=512000 periodicity-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink stream-name="MyKinesisVideoStream" access-key="AKIAYUIP3VGJ6HR5HSK4" secret-key="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" aws-region="ap-northeast-1"
 ```
