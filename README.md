@@ -6,6 +6,8 @@
 每秒最多 5 個 chunk 的樣子  
 如果以兩分鐘上傳一次的話，大概是收集 600 chunks 集合成影片  
 也許可以寫第二支程式負責上傳的部分，也許要考慮刪除的部分，s3 免費的容量上限好像是 5G  
+[update 2020/12/19 13:03]
+改成使用 HLS 的方式讀取 stream，應該可以用 opencv 的方式讀取 frame 來存成影片
 
 ```bash
 python stream_to_video.py
