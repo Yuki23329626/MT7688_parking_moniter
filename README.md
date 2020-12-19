@@ -1,6 +1,21 @@
 # pi parking monitor
 停車場車輛監控應用  
 
+## Requirements
+1. opencv  
+pip install opencv-python 可能會遇到問題  
+解決方法是直接去官網下載 source code 依照步驟進行編譯  
+[opencv編譯方式](https://docs.opencv.org/4.5.0/db/df5/tutorial_linux_gcc_cmake.html)  
+cmake 那邊可能有點難以理解  
+總之就是在根目錄建一個資料夾 "build"，進入 "build" 資料夾後，執行  
+```bash
+cmake ../../opencv-master
+make
+```
+
+2. python version  
+python 版本使用 3 的最新版應該就好了  
+
 ### 抓取即時影像片段
 目前只有抓單一 chunk 的實作，之後要考慮如何組合成影片後上傳到 s3  
 每秒最多 5 個 chunk 的樣子  
@@ -8,6 +23,11 @@
 也許可以寫第二支程式負責上傳的部分，也許要考慮刪除的部分，s3 免費的容量上限好像是 5G  
 #### [update 2020/12/19 13:03]  
 改成使用 HLS 的方式讀取 stream，應該可以用 opencv 的方式讀取 frame 來存成影片
+#### [update 2020/12/19 15:44]  
+突然發現一件事，也許可以不用 s3，因為 opencv 可以直接從 HLS 中擷取 frame  
+直接用 frame 來做 text detection 就好了  
+不行，結果還是只能透過 s3 來做 text detection，因為 function 中必須要有 s3 object  
+而且文字辨識的部分只能辨識單一的相片而已  
 
 ```bash
 python stream_to_video.py
