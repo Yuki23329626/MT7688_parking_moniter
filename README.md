@@ -57,6 +57,8 @@ gst-launch-1.0 v4l2src device=/dev/video0 ! videoconvert ! video/x-raw,format=I4
 基本上目前考慮的作法是存在 s3 上，用 rekognition 的 api 來抓影片上的車牌資料  
 可以先把影片上傳到 s3 上使用 api 試試看結果怎麼樣  
 記得好像會回傳物件的字串、在畫面上的位置、範圍、時間等等，可以做為車牌辨識的資料  
+關於 response 回來的 json 格式可以參考  
+[PYTHON-BOTO3官方文件](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rekognition.html#Rekognition.Client.detect_text)  
 2. s3  
 就是一個儲存空間  
 5G 是免費的，嘛可以先不考慮容量上限，大不了再開就是了  
