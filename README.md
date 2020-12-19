@@ -11,7 +11,7 @@ cmake 那邊可能有點難以理解
 cmake ../../opencv-master
 make
 ```
-[opencv編譯方式](https://docs.opencv.org/4.5.0/db/df5/tutorial_linux_gcc_cmake.html)  
+  [opencv編譯方式](https://docs.opencv.org/4.5.0/db/df5/tutorial_linux_gcc_cmake.html)  
 2. python version  
 python 版本使用 3 的最新版應該就好了  
 
