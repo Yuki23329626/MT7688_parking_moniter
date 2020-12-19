@@ -6,9 +6,11 @@
 每秒最多 5 個 chunk 的樣子  
 如果以兩分鐘上傳一次的話，大概是收集 600 chunks 集合成影片  
 也許可以寫第二支程式負責上傳的部分，也許要考慮刪除的部分，s3 免費的容量上限好像是 5G  
+#### [update 2020/12/19 13:03]  
+改成使用 HLS 的方式讀取 stream，應該可以用 opencv 的方式讀取 frame 來存成影片
 
 ```bash
-python test.py
+python stream_to_video.py
 ```
 
 ## 筆記
@@ -40,7 +42,9 @@ python library 有兩個 class 分別是 kinesisvideo 跟 kinesis-video-media
 用 php 連後端抓資料，前端顯示結果  
 [有現成的環境可以用](https://github.com/Yuki23329626/apache-docker)  
 
+
 # 改用 pi 進行實作，以下是舊版本的資訊
+
 ## 一、讓 7688 同時開啟 wifi station mode 與 wifi ap mode
 
 1. 將 firmware 刷成 0.93 的版本  
