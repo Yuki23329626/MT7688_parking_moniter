@@ -1,5 +1,9 @@
 # pi parking monitor
-
+停車場車輛監控應用
+## 抓取即時影像片段
+```bash
+python test.py
+```
 
 # 改用 pi 進行實作，以下是舊版本的資訊
 ## 一、讓 7688 同時開啟 wifi station mode 與 wifi ap mode
