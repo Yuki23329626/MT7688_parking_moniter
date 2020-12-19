@@ -95,6 +95,9 @@ python library 有兩個 class 分別是 kinesisvideo 跟 kinesis-video-media
 大概會是比較符合全靠 AWS 的做法，缺點大概是收費會很可寬  
 不過目前還沒調查收費的部分  
 
+## 無關緊要的備註
+1. python version 2.* 貌似會被棄用  
+
 # 改用 pi 進行實作，以下是舊版本的資訊
 
 ## 一、讓 7688 同時開啟 wifi station mode 與 wifi ap mode
