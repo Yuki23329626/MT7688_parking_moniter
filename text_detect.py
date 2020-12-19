@@ -7,7 +7,7 @@ client = boto3.client('rekognition')
 BUCKET = "pistreambucket"
 NAME = "currentFrame.jpg"
 
-while(true){
+while(True):
     response = client.detect_text(
             Image={
                 'S3Object':{
@@ -21,7 +21,4 @@ while(true){
     print("\n===== response =====")
     print(json_formatted_response)
     time.sleep(1)
-}
-
-
 
