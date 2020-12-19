@@ -48,8 +48,8 @@ s3 的部分改成 10 秒傳一次
 
 下面兩個程式可以考慮背景執行  
 ```bash
-python stream_to_s3.py
-python text_detect.py
+python3 stream_to_s3.py
+python3 text_detect.py
 ```
 ## 二、在 pi 上進行影像串流到 kinesis video stream  
 請自行設定 access-key 跟 secret-key  
