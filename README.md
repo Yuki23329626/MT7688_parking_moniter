@@ -1,5 +1,44 @@
 # pi parking monitor
+停車場車輛監控應用  
 
+### 抓取即時影像片段
+目前只有抓單一 chunk 的實作，之後要考慮如何組合成影片後上傳到 s3  
+每秒最多 5 個 chunk 的樣子  
+如果以兩分鐘上傳一次的話，大概是收集 600 chunks 集合成影片  
+也許可以寫第二支程式負責上傳的部分，也許要考慮刪除的部分，s3 免費的容量上限好像是 5G  
+
+```bash
+python test.py
+```
+
+## 筆記
+1. rekognition  
+要使用 api call 的方式使用，依照 api call 來計費  
+基本上目前考慮的作法是存在 s3 上，用 rekognition 的 api 來抓影片上的車牌資料  
+可以先把影片上傳到 s3 上使用 api 試試看結果怎麼樣  
+記得好像會回傳物件的字串、在畫面上的位置、範圍、時間等等，可以做為車牌辨識的資料  
+2. s3  
+就是一個儲存空間  
+5G 是免費的，嘛可以先不考慮容量上限，大不了再開就是了  
+要考慮上限的話可能要另外寫一支程式來刪除容量  
+3. RDS  
+mysql 的資料庫  
+也有免費額度，選這個只是因為我比較熟悉 mysql  
+4. kinesisvideo  
+大坑，api 跟相關文件寫得有夠稀爛  
+使用 get_media() 要先設甚麼 get_data_endpoint 但是文件沒告訴你要怎麼用  
+python library 有兩個 class 分別是 kinesisvideo 跟 kinesis-video-media  
+結果網路上的做法是要先去 kinesisvideo 去抓 data_endpoint  
+再回來 kinesis-video-media 上把拿到的 url 給他的 client 端用  
+他X為什麼不要一開始寫在一起就好了  
+而且用 aws-cli 也是 kinesisvideo 可以用 kinesis-video-media 不能用  
+這他X是在銃三小  
+[解決方法](https://stackoverflow.com/questions/49746612/boto3-kinesis-video-stream-error-when-calling-the-getmedia-operation)  
+5. 前端  
+打算直接開個 EC2 架一個 apache 的網站在上面  
+網頁的前端應該會比較好寫，目前打算就直接用傳統的做法  
+用 php 連後端抓資料，前端顯示結果  
+[有現成的環境可以用](https://github.com/Yuki23329626/apache-docker)  
 
 # 改用 pi 進行實作，以下是舊版本的資訊
 ## 一、讓 7688 同時開啟 wifi station mode 與 wifi ap mode
