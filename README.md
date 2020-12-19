@@ -25,6 +25,8 @@ python 版本使用 3 的最新版應該就好了
 #### [update 2020/12/19 15:44]  
 突然發現一件事，也許可以不用 s3，因為 opencv 可以直接從 HLS 中擷取 frame  
 直接用 frame 來做 text detection 就好了  
+不行，結果還是只能透過 s3 來做 text detection，因為 function 中必須要有 s3 object  
+而且文字辨識的部分只能辨識單一的相片而已  
 
 ```bash
 python stream_to_video.py
