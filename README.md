@@ -34,7 +34,7 @@ python library 有兩個 class 分別是 kinesisvideo 跟 kinesis-video-media
 而且用 aws-cli 也是 kinesisvideo 可以用 kinesis-video-media 不能用  
 這他X是在銃三小  
 [解決方法](https://stackoverflow.com/questions/49746612/boto3-kinesis-video-stream-error-when-calling-the-getmedia-operation)  
-5. 前端
+5. 前端  
 打算直接開個 EC2 架一個 apache 的網站在上面  
 網頁的前端應該會比較好寫，目前打算就直接用傳統的做法  
 用 php 連後端抓資料，前端顯示結果  
