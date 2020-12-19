@@ -10,14 +10,14 @@ response = video_client.get_data_endpoint(
 )
 
 print("\n==== response ====")
-print(response)
+dataEndpoint = response['DataEndpoint']
+print(dataEndpoint)
 
-result = json.dumps(response)
-print("\n==== endpoint-url ====\n" + result[314:374])
+print("\n==== endpoint-url ====\n" + dataEndpoint)
 
 video_client = boto3.client(
 	'kinesis-video-media',
-        endpoint_url=result[314:374],
+        endpoint_url=dataEndpoint,
 	region_name='ap-northeast-1'
 )
 
@@ -28,6 +28,8 @@ stream = video_client.get_media(
 	}
 )
 
+payload = stream['Payload']
+
 #response = client.get_media(
 #    StreamName='MyKinesisVideoStream',
 #    StreamARN='arn:aws:kinesisvideo:ap-northeast-1:593275627923:stream/MyKinesisVideoStream/1608059745417',
@@ -37,5 +39,5 @@ stream = video_client.get_media(
 #)
 
 print("\n==== stream ====")
-print(stream)
+print(payload.read(1000))
 
