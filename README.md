@@ -16,6 +16,9 @@ make
 2. python version  
 python 版本使用 3 的最新版應該就好了  
 
+3. aws cli  
+記得設定 aws 相關的 configuration，同時 IAM 上的 user 要設定權限 "administratorAccess" 等等  
+
 ### 抓取即時影像片段 & 進行文字偵測
 目前只有抓單一 chunk 的實作，之後要考慮如何組合成影片後上傳到 s3  
 每秒最多 5 個 chunk 的樣子  
