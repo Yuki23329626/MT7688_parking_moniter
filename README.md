@@ -14,7 +14,7 @@ make
 ```
 
 2. python version  
-python 版本使用 3 的最新版應該就好了  
+python 版本使用 3 的最新版應該就沒問題了  
 
 3. aws cli  
 記得設定 aws 相關的 configuration，同時 IAM 上的 user 要設定權限 "administratorAccess" 等等  
