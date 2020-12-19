@@ -79,7 +79,11 @@ python library 有兩個 class 分別是 kinesisvideo 跟 kinesis-video-media
 網頁的前端應該會比較好寫，目前打算就直接用傳統的做法  
 用 php 連後端抓資料，前端顯示結果  
 [有現成的環境可以用](https://github.com/Yuki23329626/apache-docker)  
-
+#### [update 2020/12/19 21:01]  
+雖然上面這樣說了，不過 aws 也是有提供集成的版本  
+大致做法上就是結合 Elastic Beanstalk, DynamoDB, 還有 SNS  
+大概會是比較符合全靠 AWS 的做法，缺點大概是收費會很可寬  
+不過目前還沒調查收費的部分  
 
 # 改用 pi 進行實作，以下是舊版本的資訊
 
