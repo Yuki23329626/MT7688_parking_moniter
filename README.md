@@ -2,8 +2,9 @@
 停車場車輛監控應用  
 
 ## Requirements
-1. opencv  
+1. opencv
 ```bash
+pip3 install opencv-python
 sudo apt-get install libopencv-*
 ```
 
