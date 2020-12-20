@@ -14,14 +14,15 @@ make
 ```
 
 2. python version  
-python 版本使用 3 的最新版應該就好了  
+python 版本使用 3 的最新版應該就沒問題了  
 
 3. aws cli  
 記得設定 aws 相關的 configuration，同時 IAM 上的 user 要設定權限 "administratorAccess" 等等  
 aws educate 可能沒辦法完成一些需要權限的操作  
 
-## 一、抓取即時影像片段 & 進行文字偵測
- 目前只有抓單一 chunk 的實作，之後要考慮如何組合成影片後上傳到 s3  
+## 一、抓取即時影像片段 & 進行文字偵測  
+> [first commit]  
+目前只有抓單一 chunk 的實作，之後要考慮如何組合成影片後上傳到 s3  
 每秒最多 5 個 chunk 的樣子  
 如果以兩分鐘上傳一次的話，大概是收集 600 chunks 集合成影片  
 也許可以寫第二支程式負責上傳的部分，也許要考慮刪除的部分，s3 免費的容量上限好像是 5G  
@@ -47,20 +48,13 @@ s3 的部分改成 10 秒傳一次
 
 下面兩個程式可以考慮背景執行  
 ```bash
-python stream_to_s3.py
-python text_detect.py
+python3 stream_to_s3.py
+python3 text_detect.py
 ```
-
 ## 二、在 pi 上進行影像串流到 kinesis video stream  
+請自行設定 access-key 跟 secret-key  
 ```bash
-gst-launch-1.0 v4l2src device=/dev/video0 ! \
-videoconvert ! video/x-raw,format=I420,width=640,height=480 ! \
-omxh264enc control-rate=2 target-bitrate=512000 periodicity-idr=45 \
-inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink \
-stream-name="MyKinesisVideoStream" \
-access-key="AKIAYUIP3VGJ6HR5HSK4" \
-secret-key="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" \
-aws-region="ap-northeast-1"
+gst-launch-1.0 v4l2src device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480 ! omxh264enc control-rate=2 target-bitrate=512000 periodicity-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink stream-name="MyKinesisVideoStream" access-key="" secret-key="" aws-region="ap-northeast-1"
 ```
 
 ## 筆記
@@ -80,6 +74,8 @@ mysql 的資料庫
 也有免費額度，選這個只是因為我比較熟悉 mysql  
 4. kinesisvideo  
 大坑，api 跟相關文件寫得有夠稀爛  
+可以想像一下 aws console 上的說明，跟 github 上的 example code，跟實際的 library 完全不一致  
+是哪個精神分裂的人寫出來的 document??  
 使用 get_media() 要先設甚麼 get_data_endpoint 但是文件沒告訴你要怎麼用  
 python library 有兩個 class 分別是 kinesisvideo 跟 kinesis-video-media  
 結果網路上的做法是要先去 kinesisvideo 去抓 data_endpoint  
@@ -98,6 +94,9 @@ python library 有兩個 class 分別是 kinesisvideo 跟 kinesis-video-media
 大致做法上就是結合 Elastic Beanstalk, DynamoDB, 還有 SNS  
 大概會是比較符合全靠 AWS 的做法，缺點大概是收費會很可寬  
 不過目前還沒調查收費的部分  
+
+## 無關緊要的備註
+1. python version 2.* 貌似會被棄用  
 
 # 改用 pi 進行實作，以下是舊版本的資訊
 
