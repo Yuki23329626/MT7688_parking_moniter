@@ -2,15 +2,10 @@
 停車場車輛監控應用  
 
 ## Requirements
-1. opencv  
-pip install opencv-python 可能會遇到問題  
-解決方法是直接去官網下載 source code 依照步驟進行編譯  
-[opencv編譯方式](https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html)  
-cmake 那邊可能有點難以理解  
-總之就是在根目錄建一個資料夾 "build"，進入 "build" 資料夾後，執行  
+1. opencv
 ```bash
-cmake ../../opencv-master
-make
+pip3 install opencv-python
+sudo apt-get install libopencv-*
 ```
 
 2. python version  
@@ -54,7 +49,17 @@ python3 text_detect.py
 ## 二、在 pi 上進行影像串流到 kinesis video stream  
 請自行設定 access-key 跟 secret-key  
 ```bash
-gst-launch-1.0 v4l2src device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480 ! omxh264enc control-rate=2 target-bitrate=512000 periodicity-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink stream-name="MyKinesisVideoStream" access-key="" secret-key="" aws-region="ap-northeast-1"
+gst-launch-1.0 v4l2src device=/dev/video0 ! \
+videoconvert ! \
+video/x-raw,format=I420,width=640,height=480 ! \
+omxh264enc control-rate=2 target-bitrate=512000 periodicity-idr=45 inline-header=FALSE ! \
+h264parse ! \
+video/x-h264,stream-format=avc,alignment=au,profile=baseline ! \
+kvssink \
+stream-name="MyKinesisVideoStream" \
+access-key="" \
+secret-key="" \
+aws-region="ap-northeast-1"
 ```
 
 ## 筆記
