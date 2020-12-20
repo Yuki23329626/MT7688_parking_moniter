@@ -2,7 +2,7 @@
 停車場車輛監控應用  
 
 ## Requirements
-1. opencv
+1. opencv  
 請不要使用 conda 安裝，videoCapture 會有問題，原因不明  
 ```bash
 pip3 install opencv-python
