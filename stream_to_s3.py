@@ -82,6 +82,9 @@ while(True):
     ret, frame = vcap.read()
 
     if is_streaming():
+        if frame is None:
+            print("frame is None")
+            continue
         # Display the resulting frame
         # cv2.imshow('frame', frame)
         cv2.imwrite("frame.jpg", frame)
