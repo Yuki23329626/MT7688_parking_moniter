@@ -1,7 +1,12 @@
 import boto3
 import cv2
 import time
+import sys
+import logging
 from botocore.exceptions import ClientError
+
+FORMAT = '[%(levelname)s][%(asctime)s] %(message)s'
+logging.basicConfig(format=FORMAT, filename='log.stream_to_s3', level=logging.WARNING)
 
 def upload_file(file_name, bucket, object_name=None):
     """Upload a file to an S3 bucket
@@ -32,16 +37,17 @@ def get_hls_url():
             StreamName=STREAM_NAME,
             PlaybackMode="LIVE"
         )['HLSStreamingSessionURL']
-    except:
+    except ClientError as e:
+        logging.error(e)
+        print("waiting for the streaming start...")
         while(not url):
             try:
-                print("waiting for the streaming start...")
                 time.sleep(5)
                 url = kvam.get_hls_streaming_session_url(
                     StreamName=STREAM_NAME,
                     PlaybackMode="LIVE"
                 )['HLSStreamingSessionURL']
-            except:
+            except ClientError as e:
                 continue
     return url
 
@@ -51,7 +57,8 @@ def is_streaming():
             StreamName=STREAM_NAME,
             PlaybackMode="LIVE"
         )['HLSStreamingSessionURL']
-    except:
+    except ClientError as e:
+        logging.error(e)
         return False
     return True
 
@@ -98,7 +105,7 @@ while(True):
         if cv2.waitKey(22) & 0xFF == ord('q'):
             break
     else:
-        print("\n[ streaming is stop ]")
+        print("\n[ failure ]\nStream is stop")
         url = get_hls_url()
     time.sleep(10)
 
