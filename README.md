@@ -11,6 +11,7 @@ cmake 那邊可能有點難以理解
 ```bash
 cmake ../../opencv-master
 make
+sudo apt-get install libopencv-dev 
 ```
 
 2. python version  
