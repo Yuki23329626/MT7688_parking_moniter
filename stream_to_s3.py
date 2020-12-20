@@ -2,7 +2,6 @@ import boto3
 import cv2
 import time
 from botocore.exceptions import ClientError
-from datetime import datetime
 
 def upload_file(file_name, bucket, object_name=None):
     """Upload a file to an S3 bucket
@@ -88,10 +87,9 @@ while(True):
         cv2.imwrite("frame.jpg", frame)
         with open("frame.jpg", "rb") as f:
             s3.upload_fileobj(f, BUCKET_NAME, OBJECT_NAME)
-        now = datetime.now()
-        current_time = now.strftime("%H:%M:%S")
+        now = time.localtime()
         print("\n[ success ]")
-        print("Current Time =", current_time)
+        print("Current Time =", (now.tm_hour + 8) % 24, ":", now.tm_min, ":", now.tm_sec)
 
         # Press q to close the video windows before it ends if you want
         if cv2.waitKey(22) & 0xFF == ord('q'):
