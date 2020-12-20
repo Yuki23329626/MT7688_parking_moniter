@@ -26,6 +26,36 @@ def upload_file(file_name, bucket, object_name=None):
         return False
     return True
 
+def get_hls_url():
+    url = ""
+    try:
+        url = kvam.get_hls_streaming_session_url(
+            StreamName=STREAM_NAME,
+            PlaybackMode="LIVE"
+        )['HLSStreamingSessionURL']
+    except:
+        while(not url):
+            try:
+                print("waiting for the streaming start...")
+                time.sleep(5)
+                url = kvam.get_hls_streaming_session_url(
+                    StreamName=STREAM_NAME,
+                    PlaybackMode="LIVE"
+                )['HLSStreamingSessionURL']
+            except:
+                continue
+    return url
+
+def is_streaming():
+    try:
+        url = kvam.get_hls_streaming_session_url(
+            StreamName=STREAM_NAME,
+            PlaybackMode="LIVE"
+        )['HLSStreamingSessionURL']
+    except:
+        return False
+    return True
+
 STREAM_NAME = "MyKinesisVideoStream"
 
 kv = boto3.client("kinesisvideo")
@@ -41,25 +71,7 @@ print(dataEndpoint)
 # # Grab the HLS Stream URL from the endpoint
 kvam = boto3.client("kinesis-video-archived-media", endpoint_url=dataEndpoint)
 
-url = ""
-try:
-    url = kvam.get_hls_streaming_session_url(
-        StreamName=STREAM_NAME,
-        PlaybackMode="LIVE"
-    )['HLSStreamingSessionURL']
-except:
-    while(not url):
-        try:
-            print("waiting for the streaming start...")
-            time.sleep(5)
-            url = kvam.get_hls_streaming_session_url(
-                StreamName=STREAM_NAME,
-                PlaybackMode="LIVE"
-            )['HLSStreamingSessionURL']
-        except:
-            continue
-            
-
+url = get_hls_url()
 
 vcap = cv2.VideoCapture(url)
 s3 = boto3.client('s3')
@@ -70,7 +82,7 @@ while(True):
     # Capture frame-by-frame
     ret, frame = vcap.read()
 
-    if ret:
+    if is_streaming():
         # Display the resulting frame
         # cv2.imshow('frame', frame)
         cv2.imwrite("frame.jpg", frame)
@@ -78,15 +90,15 @@ while(True):
             s3.upload_fileobj(f, BUCKET_NAME, OBJECT_NAME)
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
-        print("\n=== success ===")
+        print("\n[ success ]")
         print("Current Time =", current_time)
 
         # Press q to close the video windows before it ends if you want
         if cv2.waitKey(22) & 0xFF == ord('q'):
             break
     else:
-        print("Frame is None")
-        break
+        print("\n[ streaming is stop ]")
+        url = get_hls_url()
     time.sleep(10)
 
 
