@@ -4,6 +4,7 @@
 ## Requirements
 1. opencv  
 請不要使用 conda 安裝，videoCapture 會有問題，原因不明  
+盲猜是因為 conda 上的 opencv 的 libopencv-* 有問題  
 ```bash
 pip3 install opencv-python
 sudo apt-get install libopencv-*
