@@ -1,7 +1,0 @@
-[ERROR][2020-12-20 17:05:50,008] An error occurred (ResourceNotFoundException) when calling the GetHLSStreamingSessionURL operation: No fragments found in the stream for the streaming request.
-[ERROR][2020-12-20 17:06:28,988] An error occurred (ResourceNotFoundException) when calling the GetHLSStreamingSessionURL operation: No fragments found in the stream for the streaming request.
-[ERROR][2020-12-20 17:06:39,819] An error occurred (ResourceNotFoundException) when calling the GetHLSStreamingSessionURL operation: No fragments found in the stream for the streaming request.
-[ERROR][2020-12-20 17:12:14,826] An error occurred (ResourceNotFoundException) when calling the GetHLSStreamingSessionURL operation: No fragments found in the stream for the streaming request.
-[ERROR][2020-12-20 17:16:51,056] An error occurred (ResourceNotFoundException) when calling the GetHLSStreamingSessionURL operation: No fragments found in the stream for the streaming request.
-[ERROR][2020-12-20 17:18:45,879] An error occurred (ResourceNotFoundException) when calling the GetHLSStreamingSessionURL operation: No fragments found in the stream for the streaming request.
-[ERROR][2020-12-20 17:18:59,218] An error occurred (ResourceNotFoundException) when calling the GetHLSStreamingSessionURL operation: No fragments found in the stream for the streaming request.

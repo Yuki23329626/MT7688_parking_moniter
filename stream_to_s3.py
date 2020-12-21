@@ -79,21 +79,20 @@ kvam = boto3.client("kinesis-video-archived-media", endpoint_url=dataEndpoint)
 
 url = get_hls_url()
 
-vcap = cv2.VideoCapture(url)
 s3 = boto3.client('s3')
 BUCKET_NAME = "pistreambucket"
 OBJECT_NAME = "currentFrame.jpg"
 
 while(True):
     # Capture frame-by-frame
+    vcap = cv2.VideoCapture(url)
     ret, frame = vcap.read()
-
     if is_streaming():
         if frame is None:
             print("frame is None")
             continue
         # Display the resulting frame
-        # cv2.imshow('frame', frame)
+        cv2.imshow('frame', frame)
         cv2.imwrite("frame.jpg", frame)
         with open("frame.jpg", "rb") as f:
             s3.upload_fileobj(f, BUCKET_NAME, OBJECT_NAME)
@@ -107,7 +106,7 @@ while(True):
     else:
         print("\n[ failure ]\nStream is stop")
         url = get_hls_url()
-    time.sleep(10)
+    time.sleep(1)
 
 
 # When everything done, release the capture
