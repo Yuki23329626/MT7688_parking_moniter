@@ -88,7 +88,7 @@ python library 有兩個 class 分別是 kinesisvideo 跟 kinesis-video-media
 結果網路上的做法是要先去 kinesisvideo 去抓 data_endpoint  
 再回來 kinesis-video-media 上把拿到的 url 給他的 client 端用  
 他X為什麼不要一開始寫在一起就好了  
-而且用 aws-cli 也是 kinesisvideo 可以用 kinesis-video-media 不能用  
+而且用 aws-cli 也是 kinesisvideo 可以用，kinesis-video-media 不能用  
 這他X是在銃三小  
 [解決方法](https://stackoverflow.com/questions/49746612/boto3-kinesis-video-stream-error-when-calling-the-getmedia-operation)  
 5. 前端  
@@ -99,7 +99,7 @@ python library 有兩個 class 分別是 kinesisvideo 跟 kinesis-video-media
 - [update 2020/12/19 21:01]  
 雖然上面這樣說了，不過 aws 也是有提供集成的版本  
 大致做法上就是結合 Elastic Beanstalk, DynamoDB, 還有 SNS  
-大概會是比較符合全靠 AWS 的做法，缺點大概是收費會很可寬  
+大概會是比較符合全靠 AWS 的做法，缺點大概是收費會很可觀  
 不過目前還沒調查收費的部分  
 
 ## 無關緊要的備註
