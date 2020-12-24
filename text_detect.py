@@ -20,7 +20,8 @@ while(True):
 
     print("\n===== response =====")
     print(json_formatted_response)
-    time.sleep(100)
+    #time.sleep(100)
+    input()
 
 # response json will be like this:
 # {
