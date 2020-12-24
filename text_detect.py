@@ -483,8 +483,10 @@ while(True):
         print(i['Geometry']['BoundingBox']['Width'])
         print()
 
-    print(result[0]['DetectedText'])
-    print()
+    if result == None:
+        continue
+    else:
+        print(result[0]['DetectedText'])
 
     if (result[0]['DetectedText'].find('.')>=0):
         lisence_plate = result[0]['DetectedText'].split('.')
@@ -509,7 +511,7 @@ while(True):
         "lisence_plate_tail" : license_plate_tail
         }
 
-    res = requests.post('https://michael7105.csie.io/carLocatonSearch/Manager/location_update.php', data = my_data)
+    res = requests.get('https://michael7105.csie.io/')
 
     print(res)
 
