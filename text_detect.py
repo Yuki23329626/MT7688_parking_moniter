@@ -510,6 +510,7 @@ while(True):
         "lisence_plate_head" : license_plate_head,
         "lisence_plate_tail" : license_plate_tail
         }
+    mydata = json.dump(my_data)
 
     res = requests.post('https://michael7105.csie.io/carLocationSearch/Manager/location_update.php', data = my_data)
 
