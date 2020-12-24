@@ -511,7 +511,7 @@ while(True):
         "lisence_plate_tail" : license_plate_tail
         }
 
-    res = requests.post('https://michael7105.csie.io/carLocatonSearch/Manager/location_update.php', data = my_data)
+    res = requests.post('https://michael7105.csie.io/carLocationSearch/Manager/location_update.php', data = my_data)
 
     print(res)
 
