@@ -496,7 +496,7 @@ while(True):
     elif (result[0]['DetectedText'].find('-')>=0):
         lisence_plate = result[0]['DetectedText'].split('-')
         print(lisence_plate)
-        license_plate_head = result[0]['DetectedText'].split('-')[1]
+        license_plate_head = result[0]['DetectedText'].split('-')[0]
         license_plate_tail = result[0]['DetectedText'].split('-')[1]
     elif (len(result[0]['DetectedText'])) == 6 or (len(result[0]['DetectedText'])) == 7 :
         print(result[0]['DetectedText'])
