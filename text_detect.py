@@ -36,7 +36,7 @@ while(True):
     for element in response['TextDetections']:
         if (len(element['DetectedText'])==6) or (len(element['DetectedText'])==7) or (len(element['DetectedText'])==8):
             if(element['Type'] == 'LINE'):
-                if(element['DetectedText'].find('.')>=0):
+                if(element['DetectedText'].find('.')>=0 and element['DetectedText'].find(' ')<0):
                     if (element['DetectedText'].find('.')<2) or (element['DetectedText'].find('.')>4):
                         continue
                     # print('.')
