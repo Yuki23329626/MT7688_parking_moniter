@@ -92,7 +92,8 @@ while(True):
             print("frame is None")
             continue
         # Display the resulting frame
-        cv2.imshow('frame', frame)
+        resized_frame = cv2.resize(frame, (640, 360))
+        cv2.imshow('frame', resized_frame)
         cv2.imwrite("frame.jpg", frame)
         with open("frame.jpg", "rb") as f:
             s3.upload_fileobj(f, BUCKET_NAME, OBJECT_NAME)

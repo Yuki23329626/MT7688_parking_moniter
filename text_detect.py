@@ -69,6 +69,7 @@ while(True):
     if result == []:
         print('\n===== Do Not Find Lisence Plate =====')
         # time.sleep(DELAY)
+        input()
         continue
     else:
         print('\n===== The Most Likely Candidate =====')
