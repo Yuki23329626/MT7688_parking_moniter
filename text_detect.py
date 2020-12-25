@@ -9,7 +9,12 @@ client = boto3.client('rekognition')
 BUCKET = "pistreambucket"
 NAME = "currentFrame.jpg"
 
+# Since AWS rekognition API call is extremely expensive
+# You culd setting the delay of api call(in seconds) right here
+DELAY = 100
+
 while(True):
+    print("\n===== Start Detecting Via API =====")
     response = client.detect_text(
             Image={
                 'S3Object':{
@@ -18,12 +23,15 @@ while(True):
                     }
                 }
             )
+    response_json_dumps = json.dumps(response, indent=4)
 
-    print("\n===== Start Detecting =====")
+    print("\n===== Response =====")
+    print(response_json_dumps)
     keys = []
     values = []
     result = []
 
+    print('\n===== Filtering Legalled Candidates =====')
     i = 0
     for element in response['TextDetections']:
         if (len(element['DetectedText'])==6) or (len(element['DetectedText'])==7) or (len(element['DetectedText'])==8):
@@ -48,20 +56,25 @@ while(True):
                     result.append(element)
                     i += 1
 
-                
+    print('\n===== Sorting Candidates With Width and Confidence =====')
     result = sorted(result, key=lambda k: k.get('Confidence'), reverse=True)
     result = sorted(result, key=lambda k: k['Geometry']['BoundingBox'].get('Width'), reverse=True)
     
     for i in result:
-        print(i['DetectedText'])
-        print(i['Geometry']['BoundingBox']['Width'])
+        print('DetectedText:\t' + i['DetectedText'])
+        print('Width:\t\t' + str(i['Geometry']['BoundingBox']['Width']))
+        print('Confidence:\t' + str(i['Confidence']))
         print()
-
-    if result == None:
+    
+    if result == []:
+        print('\n===== Do Not Find Lisence Plate =====')
+        # time.sleep(DELAY)
         continue
     else:
+        print('\n===== The Most Likely Candidate =====')
         print(result[0]['DetectedText'])
 
+    print('\n===== Split Lisence Plate =====')
     if (result[0]['DetectedText'].find('.')>=0):
         lisence_plate = result[0]['DetectedText'].split('.')
         print(lisence_plate)
@@ -79,6 +92,7 @@ while(True):
         print(license_plate_head)
         print(license_plate_tail)
 
+    print('\n===== Update Database =====')
     my_data = {
         "camera_id" : "A01",
         "lisence_plate_head" : license_plate_head,
@@ -88,5 +102,7 @@ while(True):
 
     res = requests.post('https://michael7105.csie.io/carLocationSearch/Manager/location_update.php', data = my_data)
 
+    print('\n===== Response From location_update() =====')
     print(res)
-    time.sleep(100)
+    # time.sleep(DELAY)
+    input()
