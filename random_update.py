@@ -101,8 +101,9 @@ while True:
             cursor.execute(sql, ("", "", camera[random_camera_id]))
             parking_space[camera[random_camera_id]] = ""
         elif parking_space[camera[random_camera_id]] != "":
+            print('2')
             while True:
-                print('2')
+                print('4')
                 random_camera_id = random.randint(0,29)
                 if parking_space[camera[random_camera_id]] == "":
                     parking_space[camera[random_camera_id]] = car[random_car_id]
