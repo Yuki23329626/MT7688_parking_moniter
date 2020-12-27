@@ -10,6 +10,7 @@ from mysql.connector import errorcode
 # Obtain connection string information from the portal
 config = {
     'host':'54.64.81.91',
+    'port':'8080',
     'user':'root',
     'password':os.environ['MYSQL_ROOT_PASSWORD'],
     'database':'pi_parking_monitor'
