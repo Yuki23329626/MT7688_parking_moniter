@@ -92,6 +92,7 @@ while True:
         else:
             cursor.execute(sql, (car[random_car_id][:3], car[random_car_id][3:], camera[random_camera_id]))
         connection.commit()
+        number -= 1
     input()
 
 cursor.close()
