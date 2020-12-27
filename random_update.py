@@ -91,8 +91,10 @@ while True:
             exist.remove(car[random_car_id])
         else:
             cursor.execute(sql, (car[random_car_id][:3], car[random_car_id][3:], camera[random_camera_id]))
+            exist.append(car[random_car_id])
         connection.commit()
         number -= 1
+    print('end of round')
     input()
 
 cursor.close()
