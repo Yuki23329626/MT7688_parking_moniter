@@ -84,27 +84,34 @@ camera = [
     'B15',
     'B16']
 
-exist_car = []
+parking_space = {}
 
 while True:
     number = random.randint(1,5)
     cursor.execute("SELECT camera_id, lisence_plate_head, lisence_plate_tail FROM parking_space;")
     for (camera_id, lisence_plate_head, lisence_plate_tail) in cursor:
-        if(lisence_plate_head != ''):
-            exist_car.append(lisence_plate_head + lisence_plate_tail)
+        parking_space.setdefault(camera_id, lisence_plate_head + lisence_plate_tail)
 
     while number:
+        random_car_id = random.randint(0,29)
         random_camera_id = random.randint(0,30)
         sql = "UPDATE parking_space SET lisence_plate_head = %s, lisence_plate_tail = %s WHERE camera_id = %s;"
-        random_car_id = random.randint(0,29)
-        if(car[random_car_id] in exist_car):
-            # print('1')
+        if car[random_car_id] in parking_space.keys():
+            print('1')
             cursor.execute(sql, ("", "", camera[random_camera_id]))
-            exist_car.remove(car[random_car_id])
+            parking_space[camera[random_camera_id]] = ""
+        elif parking_space[camera[random_camera_id]] != "":
+            while True:
+                print('2')
+                random_camera_id = random.randint(0,30)
+                if parking_space[camera[random_camera_id]] == "":
+                    parking_space[camera[random_camera_id]] = car[random_car_id]
+                    cursor.execute(sql, (car[random_car_id][:3], car[random_car_id][3:], camera[random_camera_id]))
+                    break
         else:
-            # print('3')
+            print('3')
             cursor.execute(sql, (car[random_car_id][:3], car[random_car_id][3:], camera[random_camera_id]))
-            exist_car.append(car[random_car_id])
+            parking_space[camera[random_camera_id]] = car[random_car_id]
         connection.commit()
         number -= 1
     print('end of round')
