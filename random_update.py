@@ -7,12 +7,12 @@ import requests
 import MySQLdb
 
 # Obtain connection string information from the portal
-connection= MySQLdb.connect(
-    host='localhost',
+connection = MySQLdb.connect(
+    host = 'localhost',
     port = 3306,
-    user='root',
-    passwd=os.environ['MYSQL_ROOT_PASSWORD'],
-    db ='pi_parking_monitor',)
+    user = 'root',
+    passwd = os.environ['MYSQL_ROOT_PASSWORD'],
+    db = 'pi_parking_monitor',)
 
 cursor = connection.cursor()
 
