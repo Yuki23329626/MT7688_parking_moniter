@@ -91,7 +91,7 @@ while True:
     number = random.randint(1,5)
     cursor.execute("SELECT camera_id, lisence_plate_head, lisence_plate_tail FROM parking_space;")
     for (camera_id, lisence_plate_head, lisence_plate_tail) in cursor:
-        exist_camera.append(camera_id)
+        exist_camera.append(camera[camera_id])
         exist_car.append(lisence_plate_head + lisence_plate_tail)
 
     while number:
@@ -103,11 +103,10 @@ while True:
             cursor.execute(sql, ("", "", camera[random_camera_id]))
             exist_car.remove(car[random_car_id])
             exist_camera.remove(camera[random_camera_id])
-        if(camera[random_camera_id] in exist_camera):
+        elif(camera[random_camera_id] in exist_camera):
             while True:
                 print('2')
                 random_camera_id = random.randint(0,30)
-                print(random_camera_id)
                 if not (camera[random_camera_id] in exist_camera):
                     cursor.execute(sql, (car[random_car_id][:3], car[random_car_id][3:], camera[random_camera_id]))
                     exist_camera.append(camera[random_camera_id])
