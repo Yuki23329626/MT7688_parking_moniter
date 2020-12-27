@@ -104,9 +104,10 @@ while True:
             exist_car.remove(car[random_car_id])
             exist_camera.remove(camera[random_camera_id])
         if(camera[random_camera_id] in exist_camera):
-            print('2')
             while True:
+                print('2')
                 random_camera_id = random.randint(0,30)
+                print(random_camera_id)
                 if camera[random_camera_id] not in exist_camera:
                     cursor.execute(sql, (car[random_car_id][:3], car[random_car_id][3:], camera[random_camera_id]))
                     exist_camera.append(camera[random_camera_id])
