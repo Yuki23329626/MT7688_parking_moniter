@@ -96,9 +96,9 @@ while True:
         random_car_id = random.randint(0,29)
         random_camera_id = random.randint(0,30)
         sql = "UPDATE parking_space SET lisence_plate_head = %s, lisence_plate_tail = %s WHERE camera_id = %s;"
-        print('parking_space.keys():', parking_space.keys())
+        print('parking_space.keys():', parking_space.values())
         input()
-        if car[random_car_id] in parking_space.keys():
+        if car[random_car_id] in parking_space.values():
             print('1')
             cursor.execute(sql, ("", "", camera[random_camera_id]))
             parking_space[camera[random_camera_id]] = ""
