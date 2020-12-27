@@ -91,7 +91,7 @@ while True:
     number = random.randint(1,5)
     cursor.execute("SELECT camera_id, lisence_plate_head, lisence_plate_tail FROM parking_space;")
     for (camera_id, lisence_plate_head, lisence_plate_tail) in cursor:
-        exist_camera.append(camera[camera_id])
+        exist_camera.append(camera_id)
         exist_car.append(lisence_plate_head + lisence_plate_tail)
 
     while number:
