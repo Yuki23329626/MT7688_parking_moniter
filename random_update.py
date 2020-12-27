@@ -105,7 +105,7 @@ while True:
         elif parking_space[camera[random_camera_id]] != "":
             while True:
                 print('2')
-                random_camera_id = random.randint(0,30)
+                random_camera_id = random.randint(0,29)
                 if parking_space[camera[random_camera_id]] == "":
                     parking_space[camera[random_camera_id]] = car[random_car_id]
                     cursor.execute(sql, (car[random_car_id][:3], car[random_car_id][3:], camera[random_camera_id]))
