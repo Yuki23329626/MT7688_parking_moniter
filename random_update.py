@@ -108,7 +108,7 @@ while True:
                 print('2')
                 random_camera_id = random.randint(0,30)
                 print(random_camera_id)
-                if camera[random_camera_id] not in exist_camera:
+                if not (camera[random_camera_id] in exist_camera):
                     cursor.execute(sql, (car[random_car_id][:3], car[random_car_id][3:], camera[random_camera_id]))
                     exist_camera.append(camera[random_camera_id])
                     exist_car.append(car[random_car_id])
