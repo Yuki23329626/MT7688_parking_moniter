@@ -38,7 +38,17 @@ car = [
     'VRF7642',
     'JDF2325',
     'EUR6543',
-    'DGS2234'
+    'DGS2234',
+    'DKE4973',
+    'EJK3947',
+    'JER2094',
+    'CMS2065',
+    'IIU9834',
+    'PLM3853',
+    'QME3295',
+    'IIU2844',
+    'JHD3754',
+    'AAQ9843'
     ]
 
 camera = [
@@ -85,7 +95,11 @@ while True:
     while number:
         random_camera_id = random.randint(0,30)
         sql = "UPDATE parking_space SET lisence_plate_head = %s, lisence_plate_tail = %s WHERE camera_id = %s;"
+<<<<<<< HEAD
         random_car_id = random.randint(0,19)
+=======
+        random_car_id = random.randint(1,29)
+>>>>>>> f6d6e17ffb06da32ed8a04eecc55cc54a8dafb44
         if(car[random_car_id] in exist):
             cursor.execute(sql, ("", "", camera[random_camera_id]))
             exist.remove(car[random_car_id])
