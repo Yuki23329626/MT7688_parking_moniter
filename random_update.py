@@ -106,10 +106,10 @@ while True:
         elif(camera[random_camera_id] in exist_camera):
             while True:
                 print('2')
-                input()
                 random_camera_id = random.randint(0,30)
                 print('camera[random_camera_id]:',camera[random_camera_id])
                 print('exist_camera:',exist_camera)
+                input()
                 if not (camera[random_camera_id] in exist_camera):
                     cursor.execute(sql, (car[random_car_id][:3], car[random_car_id][3:], camera[random_camera_id]))
                     exist_camera.append(camera[random_camera_id])
