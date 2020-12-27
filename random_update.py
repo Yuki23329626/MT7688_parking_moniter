@@ -98,7 +98,7 @@ while True:
         random_camera_id = random.randint(0,30)
         sql = "UPDATE parking_space SET lisence_plate_head = %s, lisence_plate_tail = %s WHERE camera_id = %s;"
         random_car_id = random.randint(0,29)
-        if(car[random_car_id] in exist):
+        if(car[random_car_id] in exist_car):
             cursor.execute(sql, ("", "", camera[random_camera_id]))
             exist_car.remove(car[random_car_id])
             exist_camera.remove(camera[random_camera_id])
