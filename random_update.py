@@ -17,7 +17,7 @@ connection= mysql.connector.connect(
 
 cursor = connection.cursor()
 
-sql = "UPDATE parking_space SET lisence_plate_head = %s lisence_plate_tail = %s WHERE camera_id = %s;"
+sql = "UPDATE parking_space SET lisence_plate_head = %s, lisence_plate_tail = %s WHERE camera_id = %s;"
 
 cursor.execute(sql, ('ACE', '1234', 'A02'))
 
