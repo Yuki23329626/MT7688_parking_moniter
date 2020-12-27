@@ -95,7 +95,7 @@ while True:
         connection.commit()
         number -= 1
     print('end of round')
-    input()
+    time.sleep(5)
 
 cursor.close()
 connection.close()
