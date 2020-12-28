@@ -87,7 +87,7 @@ camera = [
 parking_space = {}
 
 while True:
-    number = random.randint(1,5)
+    number = random.randint(1,3)
     cursor.execute("SELECT camera_id, lisence_plate_head, lisence_plate_tail FROM parking_space;")
     for (camera_id, lisence_plate_head, lisence_plate_tail) in cursor:
         parking_space.setdefault(camera_id, lisence_plate_head + lisence_plate_tail)
