@@ -11,7 +11,7 @@ NAME = "currentFrame.jpg"
 
 # Since AWS rekognition API call is extremely expensive
 # You culd setting the delay of api call(in seconds) right here
-DELAY = 100
+DELAY = 10
 
 while(True):
     print("\n===== Start Detecting Via API =====")
@@ -105,5 +105,5 @@ while(True):
 
     print('\n===== Response From location_update() =====')
     print(res)
-    # time.sleep(DELAY)
-    input()
+    time.sleep(DELAY)
+    #input()
