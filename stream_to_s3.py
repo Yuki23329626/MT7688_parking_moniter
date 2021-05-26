@@ -107,7 +107,7 @@ while(True):
     else:
         print("\n[ failure ]\nStream is stop")
         url = get_hls_url()
-    time.sleep(1)
+    time.sleep(2)
 
 
 # When everything done, release the capture

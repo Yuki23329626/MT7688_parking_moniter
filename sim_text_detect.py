@@ -95,13 +95,13 @@ while(True):
 
     print('\n===== Update Database =====')
     my_data = {
-        "camera_id" : "A01",
+        "camera_id" : "A13",
         "lisence_plate_head" : license_plate_head,
         "lisence_plate_tail" : license_plate_tail
         }
     my_data = json.dumps(my_data)
 
-    res = requests.post('https://michael7105.csie.io/carLocationSearch/Manager/location_update.php', data = my_data)
+    res = requests.post('https://michael7105.csie.io/pi/carLocationSearch/Manager/location_update.php', data = my_data)
 
     print('\n===== Response From location_update() =====')
     print(res)
