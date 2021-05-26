@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>停車位置查詢</title>
+    <style>
+        body, html{
+            width: 99%;
+            height: 98%;
+            font-family: "Times New Roman",標楷體;
+        }
+        /*Header*/
+        .header {
+            padding: 15px;
+            width: 95%;
+            text-align: center;
+            background: white;
+        }
+        .header h1 {
+            font-size: 50px;
+        }
+        /* Create columns*/
+        .column {
+            float: left;
+            text-align: center;
+            width: 95%;
+            padding: 15px;
+        }
+        /* 原始 */
+        input[type="button"]{
+            background-color: transparent;
+            border: 0;
+            width:200px;
+            height:200px;
+            background-image:url('carLocationSearch/img/carLocationIcon.png');
+        }
+        /* 滑入 */
+        input[type="button"]:hover{
+            background-color: transparent;
+            border: 0;
+            width:200px;
+            height:200px;
+            background-image:url('carLocationSearch/img/carLocationIcon_moveIn.png');
+        }
+        /* 焦點 */
+        input[type="button"]:focus{
+            border:0;
+            outline: 0;
+        }
+        /* 按下 */
+        input[type="button"]:active{
+            background-color: transparent;
+            border: 0;
+            width:200px;
+            height:200px;
+            background-image:url('carLocationSearch/img/carLocationIcon_click.png');
+        }
+    </style>
+    <script>
+        function preloader() {
+            if (document.images) {
+                var img1 = new Image();
+                var img2 = new Image();
+                var img3 = new Image();
+                img1.src = "carLocationSearch/img/carLocationIcon.png";
+                img2.src = "carLocationSearch/img/carLocationIcon_moveIn.png";
+                img3.src = "carLocationSearch/img/carLocationIcon_click.png";
+            }
+        }
+        function addLoadEvent(func) {
+            var oldonload = window.onload;
+            if (typeof window.onload != 'function') {
+                window.onload = func;
+            } else {
+                window.onload = function() {
+                    if (oldonload) {
+                        oldonload();
+                    }
+                    func();
+                }
+            }
+        }
+        addLoadEvent(preloader);
+    </script>
+</head>
+<body>
+<div class="header">
+    <h1>停車位置查詢系統</h1>
+</div>
+<div class="row">
+    <div class="column">
+        <input type="button" onclick="location.href='carLocationSearch/location_search.php'">
+    </div>
+</div>
+
+</body>
+</html>
